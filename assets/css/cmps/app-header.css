@@ -1,0 +1,38 @@
+.app-header {
+  padding: 20px 0;
+  background-color: #8092c2;
+  margin-bottom: 50px;
+  font-family: "Pushster", cursive;
+  font-size: 2rem;
+}
+
+.app-header h1 {
+  cursor: pointer;
+}
+
+.app-header .header-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px;
+}
+
+.app-nav {
+  color: #6f7e9b;
+}
+
+.app-nav a {
+  text-decoration: none;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 500;
+}
+
+.app-nav a:hover {
+  opacity: 0.5;
+}
+
+.app-nav .my-active {
+  color: black;
+}
