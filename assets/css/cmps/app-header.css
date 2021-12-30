@@ -2,37 +2,42 @@
   padding: 20px 0;
   background-color: #8092c2;
   margin-bottom: 50px;
-  font-family: "Pushster", cursive;
+  font-family: monospace;
   font-size: 2rem;
 }
 
-.app-header h1 {
+.app-header h1:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 
 .app-header .header-container {
   display: flex;
+  justify-items: center;
   justify-content: space-between;
   text-align: center;
-  margin: 20px;
+  margin: 25px;
 }
 
 .app-nav {
-  color: #6f7e9b;
+  color: #eeeeee;
 }
 
 .app-nav a {
   text-decoration: none;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.4rem;
-  color: white;
+  font-family: monospace;
+  font-size: 1.5rem;
+  color: rgb(75, 75, 75);
   font-weight: 500;
 }
 
 .app-nav a:hover {
   opacity: 0.5;
+  border-bottom: 2px solid rgb(63, 62, 62);
 }
 
 .app-nav .my-active {
-  color: black;
+  color: rgb(33, 34, 107);
+  font-size: 1.6rem;
+  font-weight: 600;
 }

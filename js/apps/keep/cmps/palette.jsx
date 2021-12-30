@@ -1,9 +1,13 @@
 const colors = [
+    "darkblue",
     "#89bef7",
     "#9bb021",
     "#fdc933",
     "#060bda",
     "#b8631c",
+    "pink",
+    "red",
+    "orange",
 ];
 
 export const Palette = ({ handleColorChange }) => (

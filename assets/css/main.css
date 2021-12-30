@@ -1,6 +1,8 @@
 @import "./pages/home.css";
 @import "./pages/about.css";
 @import "./cmps/app-header.css";
+@import "./basics/app.css";
 @import "./basics/base.css";
+@import "./basics/helpers.css";
 @import "./apps/book/main.css";
 @import "./apps/keep/main.css";
