@@ -1,3 +1,7 @@
+.note-app {
+  background-color: rgb(46, 45, 35);
+}
+
 .other-notes,
 .pinned-notes {
   columns: auto 300px;
