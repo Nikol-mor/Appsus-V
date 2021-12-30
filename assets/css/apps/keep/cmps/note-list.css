@@ -1,0 +1,16 @@
+.other-notes, .pinned-notes {
+    columns: auto 290px;
+    justify-content: center;
+    justify-items: center;
+    margin: 20px;
+}
+
+.pinned-notes {
+    margin-bottom: 20px;
+}
+
+.note-list h2 {
+    margin: 25px;
+    font-size: 1.2rem;
+    color: rgb(114, 114, 114);
+}

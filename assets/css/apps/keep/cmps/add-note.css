@@ -1,0 +1,10 @@
+.add-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-note-bottom {
+  display: flex;
+  flex-direction: column;
+}

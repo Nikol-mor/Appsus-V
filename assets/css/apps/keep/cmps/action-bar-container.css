@@ -1,0 +1,26 @@
+.action-bar-container {
+    align-items: center;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+    height: 30px;
+    margin: 4px 0;
+    position: relative;
+    transition: background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out, opacity 0.218s ease-in-out;
+    opacity: 1;
+}
+
+.action-bar-container {
+    opacity: 0;
+}
+
+.action-bar-container i {
+    color: #202124;
+    opacity: 0.71;
+    font-size: .9rem;
+}
+
+.action-bar-container i.pinned {
+    color: red;
+}
