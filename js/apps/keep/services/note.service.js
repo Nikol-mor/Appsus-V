@@ -3,9 +3,97 @@ import { storageService } from "../../../services/storage.service.js";
 
 let gNotes;
 let gPinnedNotes;
+const createNotes = () => {
+  let notes = storageService.loadFromStorage("NotesDB");
+  if (!notes || !notes.length) {
+    notes = [
+      {
+        id: "n100",
+        isPinned: true,
+        info: {
+          img: "https://www.acouplecooks.com/wp-content/uploads/2020/09/Latte-Art-066s.jpg",
+          video: null,
+          title: "The Best Thing In The World - Coffe",
+          txt: null,
+          todos: [],
+        },
+        backgroundColor: "blue",
+      },
+      {
+        id: "n101",
+        info: {
+          img: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/eb194a93783231.5e6dba9b4f914.gif",
+          video: null,
+          title: "I'm Still Standing!!",
+          txt: "Yeah! Yeah! Yeah!",
+          todos: [],
+        },
+        backgroundColor: "pink",
+      },
+      {
+        id: "n102",
+        info: {
+          img: "https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b",
+          video: null,
+          title: "Garden",
+          txt: "Take care of the garden",
+          todos: [],
+        },
+        backgroundColor: "brown",
+      },
+      {
+        id: "n103",
+        info: {
+          img: "https://c.tenor.com/2gIgsZHqfqIAAAAi/milk-and-mocha-cute.gif",
+          video: null,
+          title: "Hug???",
+          txt: "Give Me Some Love 😍",
+          todos: [],
+        },
+        backgroundColor: "yellow",
+      },
+      {
+        id: "n104",
+        info: {
+          img: "https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b",
+          video: null,
+          title: "Garden",
+          txt: "Take care of the garden",
+          todos: [],
+        },
+        backgroundColor: "brown",
+      },
+      {
+        id: "n105",
+        info: {
+          img: "https://i.gifer.com/OnFv.gif",
+          video: null,
+          title: "To Do:",
+          txt: null,
+          todos: [
+            {
+              id: utilService.makeId(),
+              txt: "Homeworks",
+              doneAt: Date.now(),
+            },
+            { id: utilService.makeId(), txt: "Dishes", doneAt: null },
+          ],
+        },
+        backgroundColor: "red",
+      },
+    ];
+  }
+  gNotes = notes.filter((note) => !note.isPinned);
+  saveNotesToStorage();
+  let pinnedNotes = storageService.loadFromStorage("PinnedNotesDB");
+  if (!pinnedNotes || !pinnedNotes.length) {
+    gPinnedNotes = notes.filter((note) => note.isPinned);
+    savePinnedNotesToStorage();
+  }
+};
 
 const getPinnedNotes = () => {
-  let pinnedNotes = storageService.loadFromStorage("uniquePinnedNotesDB");
+  let pinnedNotes = storageService.loadFromStorage("PinnedNotesDB");
   if (!pinnedNotes || !pinnedNotes.length) {
     pinnedNotes = [];
     const pinnedNotesIds = gNotes
@@ -206,170 +294,12 @@ const removeTodo = (noteId, todoId) => {
   return Promise.resolve();
 };
 
-const createNotes = () => {
-  let notes = storageService.loadFromStorage("uniqueNotesDB");
-  if (!notes || !notes.length) {
-    notes = [
-      {
-        id: "n101",
-        isPinned: true,
-        info: {
-          img: "https://images.pexels.com/photos/1170659/pexels-photo-1170659.jpeg?cs=srgb&dl=pexels-gagan-kaur-1170659.jpg&fm=jpg",
-          video: null,
-          title: "Good Morning Coding Academy!",
-          txt: null,
-          todos: [],
-        },
-        backgroundColor: "#e6c9a8",
-      },
-      {
-        id: "n102",
-        info: {
-          img: "https://media4.giphy.com/media/K3Sbp8fOgKye4/giphy.gif?cid=ecf05e476f0pbit43dyoqexjna7tliouf4sm5zxzkfygniqj&rid=giphy.gif&ct=g",
-          video: null,
-          title: "YESSS!",
-          txt: "It's finally over!",
-          todos: [],
-        },
-        backgroundColor: "#ccff90",
-      },
-      {
-        id: "n103",
-        info: {
-          img: "https://images.pexels.com/photos/776656/pexels-photo-776656.jpeg?cs=srgb&dl=pexels-ylanite-koppens-776656.jpg&fm=jpg",
-          video: null,
-          title: "To Do:",
-          txt: null,
-          todos: [
-            {
-              id: utilService.makeId(),
-              txt: "Get some plants",
-              doneAt: Date.now(),
-            },
-            { id: utilService.makeId(), txt: "Keep them alive", doneAt: null },
-          ],
-        },
-        backgroundColor: "#fff475",
-      },
-      {
-        id: "n104",
-        info: {
-          img: "https://images.pexels.com/photos/847483/pexels-photo-847483.jpeg?cs=srgb&dl=pexels-victor-freitas-847483.jpg&fm=jpg",
-          video: null,
-          title: "Remember that feeling?",
-          txt: "Yeah me neither...",
-          todos: [
-            { id: utilService.makeId(), txt: "Do homework", doneAt: null },
-            {
-              id: utilService.makeId(),
-              txt: "Stay focused on the goal",
-              doneAt: null,
-            },
-          ],
-        },
-        backgroundColor: "#d7aefb",
-      },
-      {
-        id: "n105",
-        info: {
-          img: null,
-          video: null,
-          title: "Let's Backend!",
-          txt: null,
-          todos: [],
-        },
-        backgroundColor: "#a7ffeb",
-      },
-      {
-        id: "n106",
-        info: {
-          img: "https://media.giphy.com/media/QGBWk7DnckEN2/giphy.gif?cid=ecf05e47i817cu36thxz6vksiqyvrdwvzqjel0sebata7klk&rid=giphy.gif&ct=g",
-          video: null,
-          title: "Me after 4 days of Appsus",
-          txt: null,
-          todos: [],
-        },
-        backgroundColor: "#fbbc04",
-      },
-      {
-        id: "n107",
-        info: {
-          img: "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-          video: null,
-          title: "PUPPIES!",
-          txt: "In case you needed a pick me up",
-          todos: [],
-        },
-        backgroundColor: "#f28b82",
-      },
-      {
-        id: "n108",
-        info: {
-          img: null,
-          video: null,
-          title: "Don't Forget",
-          txt: null,
-          todos: [
-            {
-              id: utilService.makeId(),
-              txt: "Wake up for class",
-              doneAt: Date.now(),
-            },
-            { id: utilService.makeId(), txt: "Look alive", doneAt: null },
-          ],
-        },
-        backgroundColor: "#fdcfe8",
-      },
-      {
-        id: "n109",
-        info: {
-          img: null,
-          video: "https://www.youtube.com/embed/astISOttCQ0",
-          title: "Some nostalgic tunes",
-          txt: null,
-          todos: [],
-        },
-        backgroundColor: "#f28b82",
-      },
-      {
-        id: "n110",
-        info: {
-          img: "https://images.pexels.com/photos/2740954/pexels-photo-2740954.jpeg?cs=srgb&dl=pexels-prateek-katyal-2740954.jpg&fm=jpg",
-          video: null,
-          title: "I sure hope so",
-          txt: null,
-          todos: [],
-        },
-        backgroundColor: "#aecbfa",
-      },
-      {
-        id: "n111",
-        info: {
-          img: "https://images.pexels.com/photos/4577175/pexels-photo-4577175.jpeg?cs=srgb&dl=pexels-rachel-claire-4577175.jpg&fm=jpg",
-          video: null,
-          title: "For the ambiance",
-          txt: null,
-          todos: [],
-        },
-        backgroundColor: "#e8eaed",
-      },
-    ];
-  }
-  gNotes = notes.filter((note) => !note.isPinned);
-  saveNotesToStorage();
-  let pinnedNotes = storageService.loadFromStorage("uniquePinnedNotesDB");
-  if (!pinnedNotes || !pinnedNotes.length) {
-    gPinnedNotes = notes.filter((note) => note.isPinned);
-    savePinnedNotesToStorage();
-  }
-};
-
 const saveNotesToStorage = () => {
-  storageService.saveToStorage("uniqueNotesDB", gNotes);
+  storageService.saveToStorage("NotesDB", gNotes);
 };
 
 const savePinnedNotesToStorage = () => {
-  storageService.saveToStorage("uniquePinnedNotesDB", gPinnedNotes);
+  storageService.saveToStorage("PinnedNotesDB", gPinnedNotes);
 };
 
 export const NoteService = {
