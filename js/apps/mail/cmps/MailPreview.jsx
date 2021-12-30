@@ -1,4 +1,5 @@
 import { InitialPreview } from './InitialPreview.jsx';
+import { ExpandedPreview } from './ExpandedPreview.jsx';
 
 export class MailPreview extends React.Component {
   state = {
@@ -10,7 +11,7 @@ export class MailPreview extends React.Component {
   };
 
   render() {
-    const { mail, deleteMail } = this.props;
+    const { mail, deleteMail, toggleRead, toggleStarred } = this.props;
     const { isClicked, toggleMailPreview } = this.state;
 
     return (
@@ -21,15 +22,19 @@ export class MailPreview extends React.Component {
             mail={mail}
             deleteMail={deleteMail}
             toggleMailPreview={toggleMailPreview}
+            toggleRead={toggleRead}
+            toggleStarred={toggleStarred}
           />
         )}
-        {/* {isClicked && (
+        {isClicked && (
           <ExpandedPreview
             mail={mail}
             deleteMail={deleteMail}
             toggleMailPreview={toggleMailPreview}
+            toggleRead={toggleRead}
+            toggleStarred={toggleStarred}
           />
-        )} */}
+        )}
       </section>
     );
   }

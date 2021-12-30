@@ -1,0 +1,13 @@
+.compose-mail {
+  position: relative;
+}
+
+.compose-container {
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75%;
+  width: 80%;
+}
