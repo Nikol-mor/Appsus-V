@@ -3,69 +3,83 @@ import { storageService } from "../../../services/storage.service.js";
 
 let gNotes;
 let gPinnedNotes;
-const IMG_URL='https://source.unsplash.com/random/200x200?sig=incrementingIdentifier'
 const createNotes = () => {
   let notes = storageService.loadFromStorage("NotesDB");
   if (!notes || !notes.length) {
     notes = [
       {
-        id: "n101",
+        id: "n100",
         isPinned: true,
         info: {
-          img: "https://images.pexels.com/photos/1170659/pexels-photo-1170659.jpeg?cs=srgb&dl=pexels-gagan-kaur-1170659.jpg&fm=jpg",
+          img: "https://www.acouplecooks.com/wp-content/uploads/2020/09/Latte-Art-066s.jpg",
           video: null,
-          title: "Good Morning Coding Academy!",
+          title: "The Best Thing In The World - Coffe",
           txt: null,
           todos: [],
         },
-        backgroundColor: "#blue",
+        backgroundColor: "blue",
+      },
+      {
+        id: "n101",
+        info: {
+          img: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/eb194a93783231.5e6dba9b4f914.gif",
+          video: null,
+          title: "I'm Still Standing!!",
+          txt: "Yeah! Yeah! Yeah!",
+          todos: [],
+        },
+        backgroundColor: "pink",
       },
       {
         id: "n102",
         info: {
-          img: "https://media4.giphy.com/media/K3Sbp8fOgKye4/giphy.gif?cid=ecf05e476f0pbit43dyoqexjna7tliouf4sm5zxzkfygniqj&rid=giphy.gif&ct=g",
+          img: "https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b",
           video: null,
-          title: "YESSS!",
-          txt: "It's finally over!",
+          title: "Garden",
+          txt: "Take care of the garden",
           todos: [],
         },
-        backgroundColor: "#pink",
+        backgroundColor: "brown",
       },
       {
         id: "n103",
         info: {
-          img: "https://images.pexels.com/photos/776656/pexels-photo-776656.jpeg?cs=srgb&dl=pexels-ylanite-koppens-776656.jpg&fm=jpg",
+          img: "https://c.tenor.com/2gIgsZHqfqIAAAAi/milk-and-mocha-cute.gif",
+          video: null,
+          title: "Hug???",
+          txt: "Give Me Some Love 😍",
+          todos: [],
+        },
+        backgroundColor: "yellow",
+      },
+      {
+        id: "n104",
+        info: {
+          img: "https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b",
+          video: null,
+          title: "Garden",
+          txt: "Take care of the garden",
+          todos: [],
+        },
+        backgroundColor: "brown",
+      },
+      {
+        id: "n105",
+        info: {
+          img: "https://i.gifer.com/OnFv.gif",
           video: null,
           title: "To Do:",
           txt: null,
           todos: [
             {
               id: utilService.makeId(),
-              txt: "Get some plants",
+              txt: "Homeworks",
               doneAt: Date.now(),
             },
-            { id: utilService.makeId(), txt: "Keep them alive", doneAt: null },
+            { id: utilService.makeId(), txt: "Dishes", doneAt: null },
           ],
         },
-        backgroundColor: "#red",
-      },
-      {
-        id: "n104",
-        info: {
-          img: "https://images.pexels.com/photos/847483/pexels-photo-847483.jpeg?cs=srgb&dl=pexels-victor-freitas-847483.jpg&fm=jpg",
-          video: null,
-          title: "Remember that feeling?",
-          txt: "Yeah me neither...",
-          todos: [
-            { id: utilService.makeId(), txt: "Do homework", doneAt: null },
-            {
-              id: utilService.makeId(),
-              txt: "Stay focused on the goal",
-              doneAt: null,
-            },
-          ],
-        },
-        backgroundColor: "#green",
+        backgroundColor: "red",
       },
     ];
   }

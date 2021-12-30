@@ -1,6 +1,7 @@
 .other-notes,
 .pinned-notes {
   columns: auto 300px;
+  margin-left: 15px;
   justify-items: center;
   justify-content: center;
 }

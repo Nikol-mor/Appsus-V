@@ -2,6 +2,7 @@ const colors = [
     "darkblue",
     "#89bef7",
     "#9bb021",
+    "greenyellow",
     "#fdc933",
     "#060bda",
     "#b8631c",

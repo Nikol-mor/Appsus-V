@@ -1,26 +1,37 @@
 .action-bar-container {
-    align-items: center;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    font-size: 12px;
-    height: 30px;
-    margin: 4px 0;
-    position: relative;
-    transition: background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out, opacity 0.218s ease-in-out;
-    opacity: 1;
+  align-items: center;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  font-size: 12px;
+  height: 30px;
+  margin: 4px 0;
+  position: relative;
+  transition: background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out,
+    opacity 0.4s ease-in-out;
+  opacity: 1;
 }
 
 .action-bar-container {
-    opacity: 0;
+  opacity: 0;
 }
 
 .action-bar-container i {
-    color: #202124;
-    opacity: 0.71;
-    font-size: .9rem;
+  color: #202124;
+  opacity: 0.71;
+  font-size: 0.9rem;
+}
+
+.icon-button {
+  border: none;
+  background: none;
+}
+
+.icon-button:hover {
+  border-radius: 100%;
+  background-color: rgba(43, 42, 42, 0.5);
 }
 
 .action-bar-container i.pinned {
-    color: red;
+  color: rgb(255, 0, 0);
 }

@@ -18,11 +18,13 @@
 }
 
 .note-preview img {
-  object-fit: fill;
+  object-fit: fill-;
   width: 100%;
   height: 250px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
 }
 
 .note-content {
