@@ -6,7 +6,6 @@ export const NoteList = ({
     onRemoveNote,
     onDuplicateNote,
     onPinUnpinNote,
-    sendNoteAsEmail,
 }) => {
     return (
         <section className="note-list">
@@ -19,7 +18,6 @@ export const NoteList = ({
                         onRemoveNote={onRemoveNote}
                         onDuplicateNote={onDuplicateNote}
                         onPinUnpinNote={onPinUnpinNote}
-                        sendNoteAsEmail={sendNoteAsEmail}
                     />
                 ))}
             </div>
@@ -32,7 +30,6 @@ export const NoteList = ({
                         onRemoveNote={onRemoveNote}
                         onDuplicateNote={onDuplicateNote}
                         onPinUnpinNote={onPinUnpinNote}
-                        sendNoteAsEmail={sendNoteAsEmail}
                     />
                 ))}
             </div>
