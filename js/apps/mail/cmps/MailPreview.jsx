@@ -11,11 +11,12 @@ export class MailPreview extends React.Component {
   };
 
   render() {
-    const { mail, deleteMail, toggleRead, toggleStarred } = this.props;
+    const { mail, deleteMail, toggleRead, starredMail } = this.props;
     const { isClicked, toggleMailPreview } = this.state;
 
     return (
-      <section className='mail-preview'>
+      // <section className='mail-preview'>
+      <React.Fragment>
         {/* <h4>{mail.subject}</h4> */}
         {!isClicked && (
           <InitialPreview
@@ -23,7 +24,7 @@ export class MailPreview extends React.Component {
             deleteMail={deleteMail}
             toggleMailPreview={toggleMailPreview}
             toggleRead={toggleRead}
-            toggleStarred={toggleStarred}
+            toggleStarred={starredMail}
           />
         )}
         {isClicked && (
@@ -32,10 +33,11 @@ export class MailPreview extends React.Component {
             deleteMail={deleteMail}
             toggleMailPreview={toggleMailPreview}
             toggleRead={toggleRead}
-            toggleStarred={toggleStarred}
+            toggleStarred={starredMail}
           />
         )}
-      </section>
+      </React.Fragment>
+      // </section>
     );
   }
 }

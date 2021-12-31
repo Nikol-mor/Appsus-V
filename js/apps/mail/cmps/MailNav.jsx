@@ -1,6 +1,6 @@
 import { mailService } from '../services/mail.service.js';
 import { eventBusService } from '../../../../services/event-bus.service.js';
-import { ComposeMail } from '../pages/ComposeMail.jsx';
+import { ComposeMail } from './../pages/ComposeMail.jsx';
 
 const { Link } = ReactRouterDOM;
 
@@ -38,12 +38,12 @@ export class MailNav extends React.Component {
 
   render() {
     const { folder } = this.state;
-
     return (
       <section className='folder-nav'>
-        <Link to='/mail/new/compose'>
+        {/* <Link to='/mail/new/compose'>
           <button>Compose new mail</button>
-        </Link>
+        </Link> */}
+        <button onClick={this.props.onToggleComposeModal}>Compose</button>
 
         <div
           className={`folder-mail inbox ${folder === 'inbox' ? 'chosen' : ''}`}

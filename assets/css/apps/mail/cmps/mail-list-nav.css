@@ -1,8 +1,10 @@
-.mail-main {
+/* .mail-main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  grid-template-areas: 'nav list';
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    'search search'
+    'nav list';
 }
 
 .folder-nav {
@@ -12,3 +14,7 @@
 .mail-list {
   grid-area: list;
 }
+
+.mail-filter {
+  grid-area: search;
+} */

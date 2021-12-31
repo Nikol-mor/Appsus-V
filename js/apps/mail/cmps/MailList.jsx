@@ -29,17 +29,20 @@ export class MailList extends React.Component {
     this.removeEventBus();
   }
 
-  deleteMail = (mail) => {
+  deleteMail = (ev, mail) => {
+    ev.stopPropagation();
     mailService.deleteMail(mail).then(() => {
       this.loadMails();
     });
   };
 
-  starredMail = (mail) => {
+  starredMail = (ev, mail) => {
+    ev.stopPropagation();
     mailService.toggleStarred(mail.id).then(() => this.loadMails());
   };
 
-  toggleRead = (mail, isRead) => {
+  toggleRead = (ev, mail, isRead) => {
+    ev.stopPropagation();
     mailService.toggleRead(mail.id, isRead);
     this.loadMails();
   };
@@ -47,7 +50,7 @@ export class MailList extends React.Component {
   render() {
     const { mails } = this.state;
     return (
-      <section className='mail=list'>
+      <section className='mail-list flex'>
         {!mails.length && <div>You don't have mails</div>}
         {mails.map((mail) => (
           <MailPreview

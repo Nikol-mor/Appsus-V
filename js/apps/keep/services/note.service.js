@@ -1,91 +1,91 @@
-import { utilService } from "../../../services/util.service.js";
-import { storageService } from "../../../services/storage.service.js";
+import { utilService } from '../../../../services/util.service.js';
+import { storageService } from '../../../../services/storage.service.js';
 
 let gNotes;
 let gPinnedNotes;
 const createNotes = () => {
-  let notes = storageService.loadFromStorage("NotesDB");
+  let notes = storageService.loadFromStorage('NotesDB');
   if (!notes || !notes.length) {
     notes = [
       {
-        id: "n100",
+        id: 'n100',
         isPinned: true,
         info: {
-          img: "https://www.acouplecooks.com/wp-content/uploads/2020/09/Latte-Art-066s.jpg",
+          img: 'https://www.acouplecooks.com/wp-content/uploads/2020/09/Latte-Art-066s.jpg',
           video: null,
-          title: "The Best Thing In The World - Coffe",
+          title: 'The Best Thing In The World - Coffe',
           txt: null,
           todos: [],
         },
-        backgroundColor: "blue",
+        backgroundColor: 'blue',
       },
       {
-        id: "n101",
+        id: 'n101',
         info: {
-          img: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/eb194a93783231.5e6dba9b4f914.gif",
+          img: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/eb194a93783231.5e6dba9b4f914.gif',
           video: null,
           title: "I'm Still Standing!!",
-          txt: "Yeah! Yeah! Yeah!",
+          txt: 'Yeah! Yeah! Yeah!',
           todos: [],
         },
-        backgroundColor: "pink",
+        backgroundColor: 'pink',
       },
       {
-        id: "n102",
+        id: 'n102',
         info: {
-          img: "https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b",
+          img: 'https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b',
           video: null,
-          title: "Garden",
-          txt: "Take care of the garden",
+          title: 'Garden',
+          txt: 'Take care of the garden',
           todos: [],
         },
-        backgroundColor: "brown",
+        backgroundColor: 'brown',
       },
       {
-        id: "n103",
+        id: 'n103',
         info: {
-          img: "https://c.tenor.com/2gIgsZHqfqIAAAAi/milk-and-mocha-cute.gif",
+          img: 'https://c.tenor.com/2gIgsZHqfqIAAAAi/milk-and-mocha-cute.gif',
           video: null,
-          title: "Hug???",
-          txt: "Give Me Some Love 😍",
+          title: 'Hug???',
+          txt: 'Give Me Some Love 😍',
           todos: [],
         },
-        backgroundColor: "yellow",
+        backgroundColor: 'yellow',
       },
       {
-        id: "n104",
+        id: 'n104',
         info: {
-          img: "https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b",
+          img: 'https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b',
           video: null,
-          title: "Garden",
-          txt: "Take care of the garden",
+          title: 'Garden',
+          txt: 'Take care of the garden',
           todos: [],
         },
-        backgroundColor: "brown",
+        backgroundColor: 'brown',
       },
       {
-        id: "n105",
+        id: 'n105',
         info: {
-          img: "https://i.gifer.com/OnFv.gif",
+          img: 'https://i.gifer.com/OnFv.gif',
           video: null,
-          title: "To Do:",
+          title: 'To Do:',
           txt: null,
           todos: [
             {
               id: utilService.makeId(),
-              txt: "Homeworks",
+              txt: 'Homeworks',
               doneAt: Date.now(),
             },
-            { id: utilService.makeId(), txt: "Dishes", doneAt: null },
+            { id: utilService.makeId(), txt: 'Dishes', doneAt: null },
           ],
         },
-        backgroundColor: "red",
+        backgroundColor: 'red',
       },
     ];
   }
   gNotes = notes.filter((note) => !note.isPinned);
   saveNotesToStorage();
-  let pinnedNotes = storageService.loadFromStorage("PinnedNotesDB");
+  let pinnedNotes = storageService.loadFromStorage('PinnedNotesDB');
   if (!pinnedNotes || !pinnedNotes.length) {
     gPinnedNotes = notes.filter((note) => note.isPinned);
     savePinnedNotesToStorage();
@@ -93,7 +93,7 @@ const createNotes = () => {
 };
 
 const getPinnedNotes = () => {
-  let pinnedNotes = storageService.loadFromStorage("PinnedNotesDB");
+  let pinnedNotes = storageService.loadFromStorage('PinnedNotesDB');
   if (!pinnedNotes || !pinnedNotes.length) {
     pinnedNotes = [];
     const pinnedNotesIds = gNotes
@@ -115,7 +115,7 @@ const query = (filterBy) => {
   if (!filterBy) return Promise.resolve(gNotes);
   if (filterBy.type) {
     const notesToShow = gNotes.filter((note) => {
-      if (filterBy.type === "todos") return note.info.todos.length;
+      if (filterBy.type === 'todos') return note.info.todos.length;
       return note.info[filterBy.type];
     });
 
@@ -164,7 +164,7 @@ const addNote = (noteInfo, mail) => {
       video: null,
       title: mail.subject,
       txt: mail.body,
-      color: "#ffffff",
+      color: '#ffffff',
     };
   }
   const newNote = {
@@ -295,11 +295,11 @@ const removeTodo = (noteId, todoId) => {
 };
 
 const saveNotesToStorage = () => {
-  storageService.saveToStorage("NotesDB", gNotes);
+  storageService.saveToStorage('NotesDB', gNotes);
 };
 
 const savePinnedNotesToStorage = () => {
-  storageService.saveToStorage("PinnedNotesDB", gPinnedNotes);
+  storageService.saveToStorage('PinnedNotesDB', gPinnedNotes);
 };
 
 export const NoteService = {

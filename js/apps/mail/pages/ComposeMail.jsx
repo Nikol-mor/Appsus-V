@@ -9,58 +9,54 @@ export class ComposeMail extends React.Component {
       cc: '',
       text: '',
     },
-    isOpen: false,
   };
 
-  timeOutId;
-  draftInterval;
+  // timeOutId;
+  // draftInterval;
 
   componentDidMount() {
     console.log('params', this.props);
-    this.timeOutId = setTimeout(() => this.setState({ isOpen: true }), 0);
-    this.setInput();
-    this.draftInterval = setInterval(this.saveDraft(), 3000);
+    // this.timeOutId = setTimeout(() => this.setState({ isOpen: true }), 0);
+    // this.setInput();
+    // this.draftInterval = setInterval(this.saveDraft(), 5000);
   }
 
-  /********* */
-  setInput = () => {
-    const { emailId, action } = this.props.params;
-    if (action === 'new') {
-      this.setState({
-        mail: {
-          subject: '',
-          to: '',
-          cc: '',
-          text: '',
-        },
-        isOpen: true,
-      });
-    } else {
-      mailService.getMailById(emailId).then((mail) => {
-        let { subject, from, cc, text } = mail;
-        if (mail.isDraft) {
-          this.setState((prevState) => ({
-            mail: { ...prevState.mail, subject: subject, to: from, text, cc },
-          }));
-          return;
-        }
-        if (action === 'reply') subject = 'Re : ' + subject;
-        else {
-          subject = 'Forwarded : ' + subject;
-          from = '';
-        }
-        this.setState((prevState) => ({
-          mail: { ...prevState.mail, subject: subject, to: from, text, cc },
-        }));
-      });
-    }
-  };
-  /********* */
+  // setInput = () => {
+  //   const { emailId, action } = this.props.params;
+  //   if (action === 'new') {
+  //     this.setState({
+  //       mail: {
+  //         subject: '',
+  //         to: '',
+  //         cc: '',
+  //         text: '',
+  //       },
+  //     });
+  //   } else {
+  //     mailService.getMailById(emailId).then((mail) => {
+  //       let { subject, from, cc, text } = mail;
+  //       if (mail.isDraft) {
+  //         this.setState((prevState) => ({
+  //           mail: { ...prevState.mail, subject: subject, to: from, text, cc },
+  //         }));
+  //         return;
+  //       }
+  //       if (action === 'reply') subject = 'Re : ' + subject;
+  //       else {
+  //         subject = 'Forwarded : ' + subject;
+  //         from = '';
+  //       }
+  //       this.setState((prevState) => ({
+  //         mail: { ...prevState.mail, subject: subject, to: from, text, cc },
+  //       }));
+  //     });
+  //   }
+  // };
 
-  componentWillUnmount() {
-    clearTimeout(this.timeOutId);
-    clearInterval(tihs.draftInterval);
-  }
+  // componentWillUnmount() {
+  //   clearTimeout(this.timeOutId);
+  //   clearInterval(tihs.draftInterval);
+  // }
 
   sendMail = (ev) => {
     ev.preventDefault();
@@ -79,7 +75,7 @@ export class ComposeMail extends React.Component {
 
   onBack = (ev) => {
     ev.preventDefault();
-    this.props.historuy.goBack();
+    this.props.history.goBack();
     mailService.setDraft();
   };
 
@@ -89,7 +85,7 @@ export class ComposeMail extends React.Component {
 
   render() {
     const { subject, to, cc, text } = this.state.mail;
-
+    console.log('render in compose mail');
     return (
       <section className='compose-mail'>
         <MailNav />
@@ -126,7 +122,8 @@ export class ComposeMail extends React.Component {
               id='by-txt'
               cols='30'
               rows='10'
-              value={text}></textarea>
+              value={text}
+              onChange={this.handleChange}></textarea>
             <button>Send mail</button>
           </form>
         </section>
