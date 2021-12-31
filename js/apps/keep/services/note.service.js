@@ -55,10 +55,10 @@ const createNotes = () => {
       {
         id: 'n104',
         info: {
-          img: 'https://assets.community.lomography.com/91/cc109732c3fdb70bc0bdbfb0389b5cb374c280/1216x1820x2.jpg?auth=0f22f374ded074d34afb4de990f0bb6968036b1b',
-          video: null,
-          title: 'Garden',
-          txt: 'Take care of the garden',
+          img: null,
+          video: 'https://www.youtube.com/watch?v=astISOttCQ0',
+          title: 'Watch This Bear ! ',
+          txt: 'He got some move!',
           todos: [],
         },
         backgroundColor: 'brown',

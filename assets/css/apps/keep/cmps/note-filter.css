@@ -1,5 +1,6 @@
 .note-filter {
   display: flex;
+  padding-top: 50px;
   gap: 10px;
   justify-content: center;
 }
