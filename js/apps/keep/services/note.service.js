@@ -157,15 +157,15 @@ const markUnmark = (note, todoId) => {
   return Promise.resolve(currNote);
 };
 
-const addNote = (noteInfo, mail) => {
-  if (mail && !noteInfo) {
-    noteInfo = {
-      img: null,
-      video: null,
-      title: mail.subject,
-      txt: mail.body,
-      color: '#ffffff',
-    };
+const addNote = (noteInfo) => {
+  if (noteInfo) {
+    // noteInfo = {
+    //   img: null,
+    //   video: null,
+    //   title: mail.subject,
+    //   txt: mail.body,
+    //   color: '#ffffff',
+    // };
   }
   const newNote = {
     id: utilService.makeId(),

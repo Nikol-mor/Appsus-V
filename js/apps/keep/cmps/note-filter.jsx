@@ -22,9 +22,9 @@ export class NoteFilter extends React.Component {
     render() {
         return (
             <section className="note-filter">
-                <div className="input-container note-filter-input">
+                <div className="input-container">
                     <div className="input-wrapper">
-                        <input type="text" name="txt-filter" placeholder="Search for a note" onChange={(ev) => this.handleChange(ev.target.value, true)} />
+                        <input className="search-input" type="text" name="txt-filter" placeholder="Search for a note" onChange={(ev) => this.handleChange(ev.target.value, true)} />
                         <div className="filter-by-type">
                             <button className="icon-button" onClick={() => this.handleChange('img')}><i title="image notes" className="far fa-image" ></i></button>
                             <button className="icon-button" onClick={() => this.handleChange('todos')}><i title="todo notes" className="fas fa-list-ul"></i></button>

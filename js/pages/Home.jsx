@@ -4,7 +4,7 @@ export function Home() {
     return (
         <section className="home">
             <input type="checkbox" id="check" />
-            <header className="app-header">
+            <header>
                 <h1 className="logo" onClick={() => this.props.history.push("/")}>
                     Appsus
                 </h1>
@@ -38,7 +38,7 @@ export function Home() {
                     </h2>
                     <p>
                         Here you can manage and edit your most valueble Apps Like E-mail , Keep &#38; Still be conacted to your Favorite Book shop !
-                        <p></p>
+                        {/* <p></p> */}
                         At Appsus we are put <span>YOU</span> the user at <span>FIRST PRIORITY</span>
                     </p>
                     <a href="#" className="info-btn">
@@ -47,11 +47,11 @@ export function Home() {
                 </div>
             </div>
             <div className="media-icons">
-                <a href="#">
-                    <i class="fab fa-facebook-f"></i>
+                <a title="Under construction" href="http://www.comunicaffe.com/wp-content/uploads/2013/07/under-construction.jpg">
+                    <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="#">
-                    <i class="fab fa-twitter"></i>
+                <a title="I'm feeling lucky!" href="https://www.appsus.co.uk/">
+                    <i className="fab fa-google"></i>
                 </a>
             </div>
         </section>

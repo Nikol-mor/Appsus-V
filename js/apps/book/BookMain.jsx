@@ -1,8 +1,9 @@
 // const Router = ReactRouterDOM.HashRouter;
-const { Route, Switch } = ReactRouterDOM;
 import { AppHeader } from '../../cmps/AppHeader.jsx';
 import { BookApp } from './pages/BookApp.jsx';
 import { BookDetails } from './pages/BookDetails.jsx';
+
+const { Route, Switch } = ReactRouterDOM;
 
 export function BookMain() {
   return (

@@ -65,9 +65,8 @@ export class InitialPreview extends React.Component {
           onClick={() => toggleStarred(mail.id, 'isStarred')}
           className='star-btn'>
           <i
-            className={`star ${
-              !mail.isStarred ? ' far ' : ' fas '
-            } fa-star`}></i>
+            className={`star ${!mail.isStarred ? ' far ' : ' fas '
+              } fa-star`}></i>
         </button>
 
         <p className='from'>{mail.from}</p>
@@ -151,7 +150,7 @@ export class InitialPreview extends React.Component {
       //       </button>
       //     </div>
       //   }
-      //   {!isHover && <h3 className='mail-date'>date</h3>}
+      //   {!isHover && <h3 Name='mail-date'>date</h3>}
       // </section>
     );
   }

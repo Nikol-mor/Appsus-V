@@ -103,7 +103,7 @@ export class ComposeMail extends React.Component {
             <div className='compose-header'>
               New:
               <button onClick={this.onBack} className='back-mail-btn'>
-                <i class='fas fa-times'></i>
+                <i className='fas fa-times'></i>
               </button>
             </div>
             <label htmlFor='by-subject' className='label-subject'></label>
@@ -142,7 +142,7 @@ export class ComposeMail extends React.Component {
             />
 
             <button className='send-mail-btn'>
-              <i class='fas fa-paper-plane'></i>
+              <i className='fas fa-paper-plane'></i>
             </button>
           </form>
         </section>

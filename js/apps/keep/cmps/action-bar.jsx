@@ -36,7 +36,7 @@ export const ActionBar = ({
                     className="icon-button"
                     onClick={() => onDuplicateNote(note.id)}
                 >
-                    <i title="Duplicate" class="far fa-copy"></i>
+                    <i title="Duplicate" className="far fa-copy"></i>
                 </button>
                 <button className="icon-button" onClick={() => onRemoveNote(note.id)}>
                     <i title="delete" className="far fa-trash-alt"></i>
