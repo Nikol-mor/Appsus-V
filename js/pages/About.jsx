@@ -49,29 +49,34 @@ export class About extends React.Component {
               </div>
             </div>
             <div className="team-member">
-              <img className="card-image" src="./assets/img/ram.jpg" />
+              <img
+                className="card-image" src="./assets/img/woman.jpg"
+              />
               <div className="card-text">
-                <h2>Ram Be'er</h2>
+                <h2>Nicole Elezra</h2>
                 <p>
-                  25 years old From Omer Near Be'er Sheva , Southern District.
+                  26 years old From Ashkelon , Southern District.
                   <br />
                   Student at MisterBit , Coding Academy.
                   <br />
-                  Love to write code 👨‍💻 playing football ⚽ &#38; Food 🍖🍗🍔🍕
+                  Love to write code 👨‍💻 Crossfit &#38; Food 🍖🍗🍔🍕
                 </p>
               </div>
               <div className="card-icons">
                 <div className="media-icons">
                   <a
-                    href="https://www.facebook.com/ram.beer.7/"
+                    href="https://www.facebook.com/nicole.morozov.1/"
                     target="_blank"
                   >
                     <i className="fab fa-facebook-f"></i>
                   </a>
-                  <a href="https://github.com/RamBeer6" target="_blank">
+                  <a href="https://github.com/Nikol-mor" target="_blank">
                     <i className="fab fa-github"></i>
                   </a>
-                  <a href="https://www.instagram.com/rambeer6/" target="_blank">
+                  <a
+                    href="https://www.instagram.com/nicole_elezra/"
+                    target="_blank"
+                  >
                     <i className="fab fa-instagram"></i>
                   </a>
                 </div>
