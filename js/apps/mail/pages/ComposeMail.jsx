@@ -10,60 +10,12 @@ export class ComposeMail extends React.Component {
     },
   };
 
-  // draftInterval;
-
-  // componentDidMount() {
-  //   // console.log('params', this.props);
-  //   // this.setInput();
-  //   this.draftInterval = setInterval(this.saveDraft(), 5000);
-  // }
-
-  // setInput = () => {
-  //   const { emailId, action } = this.props.params;
-  //   if (action === 'new') {
-  //     this.setState({
-  //       mail: {
-  //         subject: '',
-  //         to: '',
-  //         cc: '',
-  //         text: '',
-  //       },
-  //     });
-  //   } else {
-  //     mailService.getMailById(emailId).then((mail) => {
-  //       let { subject, from, cc, text } = mail;
-  //       if (mail.isDraft) {
-  //         this.setState((prevState) => ({
-  //           mail: { ...prevState.mail, subject: subject, to: from, text, cc },
-  //         }));
-  //         return;
-  //       }
-  //       if (action === 'reply') subject = 'Re : ' + subject;
-  //       else {
-  //         subject = 'Forwarded : ' + subject;
-  //         from = '';
-  //       }
-  //       this.setState((prevState) => ({
-  //         mail: { ...prevState.mail, subject: subject, to: from, text, cc },
-  //       }));
-  //     });
-  //   }
-  // };
-
-  // componentWillUnmount() {
-  //   // clearTimeout(this.timeOutId);
-  //   clearInterval(tihs.draftInterval);
-  // }
-
   sendMail = (ev) => {
     ev.preventDefault();
     mailService.sendMail(this.state.mail).then(() => {
       this.setState({ mail: { subject: '', to: '', cc: '', text: '' } });
       this.props.onToggleComposeModal();
     });
-    // mailService.query().then((data) => {
-    //   console.log('new array post sending', data);
-    // });
   };
 
   handleChange = ({ target }) => {
@@ -74,13 +26,13 @@ export class ComposeMail extends React.Component {
     }));
   };
 
-  onBack = (ev) => {
-    ev.preventDefault();
-    this.props.history.goBack();
-    mailService.setDraft();
+  goBack = () => {
+    this.saveDraft();
+    this.props.history.push('/mail');
   };
 
   saveDraft = () => {
+    console.log('saveDraft');
     mailService.saveDraft(this.state.mail);
   };
 
@@ -91,19 +43,13 @@ export class ComposeMail extends React.Component {
       <section className='compose-mail'>
         <div
           className={`composing ${this.state.isOpen ? 'open' : ''}`}
-          onClick={this.onBack}></div>
+          onClick={this.goBack}></div>
         <section className='compose-container'>
-          {/* <div className='compose-header'>
-            New:
-            <button onClick={this.onBack} className='back-mail-btn'>
-              Back
-            </button>
-          </div> */}
           <form onSubmit={this.sendMail}>
             <div className='compose-header'>
               New:
-              <button onClick={this.onBack} className='back-mail-btn'>
-                <i class='fas fa-times'></i>
+              <button onClick={this.goBack} className='back-mail-btn'>
+                <i className='fas fa-times'></i>
               </button>
             </div>
             <label htmlFor='by-subject' className='label-subject'></label>
@@ -123,13 +69,7 @@ export class ComposeMail extends React.Component {
               onChange={this.handleChange}
               placeholder='To'
             />
-            {/* <label htmlFor='by-cc'>cc:</label>
-            <input
-              type='text'
-              id='by-cc'
-              name='cc'
-              onChange={this.handleChange}
-            /> */}
+
             <label htmlFor='by-text' className='labelbody'></label>
             <textarea
               name='text'

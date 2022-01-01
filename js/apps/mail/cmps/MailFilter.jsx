@@ -32,7 +32,7 @@ export class MailFilter extends React.Component {
     return (
       <form className='mail-filter' onSubmit={(event) => this.filter(ev)}>
         <label htmlFor='by-word'>
-          <div className='search-img'>search</div>
+          <i class='fas fa-search'></i>
           <input
             name='word'
             id='by-word'

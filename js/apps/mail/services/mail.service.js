@@ -11,7 +11,6 @@ export const mailService = {
   getDate,
   getMailBody,
   toggleRead,
-  // toggleStarred,
   toggleStatus,
   sendMail,
   setFilter,
@@ -44,7 +43,6 @@ let gFilter = {
 };
 
 function query() {
-  //adding filterby / filtered mails
   let mailsToShow = getMailsByFolder();
   if (gFilter.filterBy) {
     const { word, type } = gFilter.filterBy;
@@ -60,9 +58,6 @@ function query() {
     return Promise.resolve(mailsByType);
   }
   return Promise.resolve(mailsToShow);
-  // gMails = _loadMailsFromStorage();
-  // return Promise.resolve(gMails);
-  // _saveMailsToStorage(gMails);
 }
 
 function getMailsByFolder() {
@@ -91,12 +86,6 @@ function deleteMail(mailDelete) {
   }
   _saveMailsToStorage(gMails);
   return Promise.resolve();
-  // let mails = _loadMailsFromStorage();
-  // mails = mails.filter((mail) => {
-  //   mail.id !== mailId;
-  // });
-  // _saveMailsToStorage(mails);
-  // return Promise.resolve();
 }
 
 function _createMail(
@@ -205,6 +194,9 @@ function saveDraft(mail) {
     false,
     true
   );
+  console.log('gDraft', gDraft);
+  _saveMailsToStorage(gMails.push(gDraft));
+  return gDraft;
 }
 
 function setFilter(filterBy) {
@@ -218,17 +210,6 @@ function toggleRead(mailId, isRead) {
   _saveMailsToStorage(gMails);
 }
 
-// function toggleStarred(mailId) {
-//   console.log('mailId in toggle star service', mailId);
-//   const mail = getMailById(mailId).then((mal) => {
-//     mail.isStarred = !mail.isStarred;
-//   });
-//   console.log('is star in service', mailId.isStarred);
-//   _saveMailsToStorage(gMails);
-//   console.log('gmails in service post start', gMails);
-//   return Promise.resolve();
-// }
-
 function toggleStatus(mailId, field) {
   const mail = gMails.find((mail) => mail.id === mailId);
   const value = mail[field] === true ? false : true;
@@ -239,16 +220,7 @@ function toggleStatus(mailId, field) {
 
 function sendMail(mail) {
   const from = loggedinUser.email;
-  const newMail = _createMail(
-    mail.subject,
-    mail.to,
-    mail.text
-    // to,
-    // true,
-    // false,
-    // true,
-    // false
-  );
+  const newMail = _createMail(mail.subject, mail.to, mail.text);
   newMail.isSent = true;
   gMails.unshift(newMail);
   _saveMailsToStorage(gMails);

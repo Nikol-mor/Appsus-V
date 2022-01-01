@@ -14,9 +14,6 @@ export class MailNav extends React.Component {
 
   componentDidMount() {
     this.loadMails();
-    // this.removeEventBus = eventBusService.on('set-read', () => {
-    //   this.loadMails();
-    // });
   }
 
   loadMails = () => {
@@ -40,9 +37,6 @@ export class MailNav extends React.Component {
     const { folder } = this.state;
     return (
       <section className='folder-nav'>
-        {/* <Link to='/mail/new/compose'>
-          <button>Compose new mail</button>
-        </Link> */}
         <button
           onClick={this.props.onToggleComposeModal}
           className='compose-btn'>
