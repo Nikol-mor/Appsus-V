@@ -43,37 +43,48 @@ export class MailNav extends React.Component {
         {/* <Link to='/mail/new/compose'>
           <button>Compose new mail</button>
         </Link> */}
-        <button onClick={this.props.onToggleComposeModal}>Compose</button>
+        <button
+          onClick={this.props.onToggleComposeModal}
+          className='compose-btn'>
+          Compose
+        </button>
+        <section className='folder-list'>
+          <div
+            className={`folder-mail inbox ${
+              folder === 'inbox' ? 'chosen' : ''
+            }`}
+            onClick={(ev) => this.onSetFolder(ev, 'inbox')}>
+            Inbox
+          </div>
 
-        <div
-          className={`folder-mail inbox ${folder === 'inbox' ? 'chosen' : ''}`}
-          onClick={(ev) => this.onSetFolder(ev, 'inbox')}>
-          Inbox
-        </div>
+          <div
+            className={`folder-mail draft ${
+              folder === 'draft' ? 'chosen' : ''
+            }`}
+            onClick={(ev) => this.onSetFolder(ev, 'draft')}>
+            Draft
+          </div>
 
-        <div
-          className={`folder-mail draft ${folder === 'draft' ? 'chosen' : ''}`}
-          onClick={(ev) => this.onSetFolder(ev, 'draft')}>
-          Draft
-        </div>
+          <div
+            className={`folder-mail sent ${folder === 'sent' ? 'chosen' : ''}`}
+            onClick={(ev) => this.onSetFolder(ev, 'sent')}>
+            Sent
+          </div>
 
-        <div
-          className={`folder-mail sent ${folder === 'sent' ? 'chosen' : ''}`}
-          onClick={(ev) => this.onSetFolder(ev, 'sent')}>
-          Sent
-        </div>
+          <div
+            className={`folder-mail ${folder === 'starred' ? 'chosen' : ''}`}
+            onClick={(ev) => this.onSetFolder(ev, 'starred')}>
+            Starred
+          </div>
 
-        <div
-          className={`folder-mail ${folder === 'starred' ? 'chosen' : ''}`}
-          onClick={(ev) => this.onSetFolder(ev, 'starred')}>
-          Starred
-        </div>
-
-        <div
-          className={`folder-mail trash ${folder === 'trash' ? 'chosen' : ''}`}
-          onClick={(ev) => this.onSetFolder(ev, 'trash')}>
-          Trash
-        </div>
+          <div
+            className={`folder-mail trash ${
+              folder === 'trash' ? 'chosen' : ''
+            }`}
+            onClick={(ev) => this.onSetFolder(ev, 'trash')}>
+            Trash
+          </div>
+        </section>
       </section>
     );
   }

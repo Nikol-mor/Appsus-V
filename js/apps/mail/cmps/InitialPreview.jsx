@@ -1,80 +1,122 @@
 import { mailService } from '../services/mail.service.js';
 import { LongTxt } from './LongTxt.jsx';
+import { MailDetails } from '../pages/MailDetails.jsx';
 
 export class InitialPreview extends React.Component {
   state = {
     isHover: false,
-    txtLength: 40,
+    isExpand: false,
+    // txtLength: 40,
   };
 
-  componentDidMount() {
-    window.addEventListener('resize', this.getTextLength);
-    this.getTextLength();
-  }
+  // componentDidMount() {
+  //   window.addEventListener('resize', this.getTextLength);
+  //   this.getTextLength();
+  // }
 
-  getTextLength = () => {
-    let length = this.getWindowSize();
-    this.setState({ txtLength: length });
-  };
+  // getTextLength = () => {
+  //   let length = this.getWindowSize();
+  //   this.setState({ txtLength: length });
+  // };
 
-  getWindowSize = () => {
-    const windowSize = window.innerWidth;
-    if (windowSize > 1600) return 70;
-    if (windowSize > 1400) return 50;
-    if (windowSize > 1200) return 40;
-    if (windowSize > 1000) return 30;
-    if (windowSize > 900) return 20;
-    if (windowSize > 800) return 10;
-    if (windowSize > 620) return 70;
-    if (windowSize > 520) return 50;
-    if (windowSize > 420) return 30;
-    return 15;
-  };
+  // getWindowSize = () => {
+  //   const windowSize = window.innerWidth;
+  //   if (windowSize > 1600) return 70;
+  //   if (windowSize > 1400) return 50;
+  //   if (windowSize > 1200) return 40;
+  //   if (windowSize > 1000) return 30;
+  //   if (windowSize > 900) return 20;
+  //   if (windowSize > 800) return 10;
+  //   if (windowSize > 620) return 70;
+  //   if (windowSize > 520) return 50;
+  //   if (windowSize > 420) return 30;
+  //   return 15;
+  // };
 
   render() {
-    const { isHover, txtLength } = this.state;
-    const { mail, deleteMail, toggleMailPreview, toggleRead, starredMail } =
-      this.props;
+    const { isHover, txtLength, isExpand } = this.state;
+    const {
+      mail,
+      deleteMail,
+      toggleMailPreview,
+      toggleRead,
+      toggleStarred,
+      expandMail,
+      replyMail,
+    } = this.props;
 
     return (
       <section
         className={`mail-init-preview ${mail.isRead ? 'read' : ''}`}
         onClick={(ev) => {
-          toggleMailPreview();
+          // toggleMailPreview();
           toggleRead(ev, mail, true);
         }}
         onMouseEnter={() => this.setState({ isHover: true })}
         onMouseLeave={() => this.setState({ isHover: false })}>
-        <div
+        {/* <button
           className={`star ${!mail.isStarred ? 'fas' : 'far'}fa-star`}
-          onClick={(ev) => starredMail(ev, mail)}></div>
+          onClick={(ev) => {
+            console.log('mail.isStarred', mail.isStarred);
+            starredMail(ev, mail);
+          }}></button> */}
 
-        <h1 className='from'>{mail.from}</h1>
+        <button
+          onClick={() => toggleStarred(mail.id, 'isStarred')}
+          className='star-btn'>
+          <i
+            className={`star ${
+              !mail.isStarred ? ' far ' : ' fas '
+            } fa-star`}></i>
+        </button>
+
+        <p className='from'>{mail.from}</p>
 
         <div className='mail-info'>
-          <h1>{mail.subject}</h1>
+          <p>{mail.subject}</p>
           <p>
             <LongTxt txt={mail.text} txtLength={txtLength} />
           </p>
         </div>
 
-        {!isHover && (
-          <h1 className='date'>{mailService.getDate(1640869935914)}</h1>
-        )}
-        {isHover && (
-          <div className='buttons'>
-            <button
-              className='read-btn'
-              onClick={(ev) => toggleRead(ev, mail, !mail.isRead)}>
-              read/unred
-            </button>
-            <button
-              className='delete-btn'
-              onClick={(ev) => deleteMail(ev, mail)}>
-              delete
-            </button>
-          </div>
-        )}
+        <div className='mail-preview-right'>
+          {!isHover && (
+            <h1 className='date-in-preview'>
+              {mailService.getDate(1640869935914)}
+            </h1>
+          )}
+          {isHover && (
+            <div className='buttons'>
+              <button
+                className='read-btn'
+                onClick={(ev) => toggleRead(ev, mail, !mail.isRead)}>
+                <i className='far fa-envelope'></i>
+              </button>
+              <button
+                className='delete-btn'
+                onClick={(ev) => deleteMail(ev, mail)}>
+                <i className='far fa-trash-alt'></i>
+              </button>
+              <button
+                onClick={() => {
+                  this.setState({ isExpand: !this.state.isExpand });
+                  // expandMail(mail.id);
+                }}>
+                <i className='fas fa-expand-alt'></i>
+              </button>
+              <button
+                onClick={() => {
+                  expandMail(mail.id);
+                }}>
+                <i className='fas fa-expand'></i>
+              </button>
+              <button onClick={() => replyMail(mail.id)}>
+                <i className='fas fa-reply'></i>
+              </button>
+            </div>
+          )}
+        </div>
+        {isExpand && <MailDetails mailId={mail.id} />}
       </section>
       // <section
       //   className='mail-init-preview'

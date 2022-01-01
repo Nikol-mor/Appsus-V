@@ -11,7 +11,8 @@ export const mailService = {
   getDate,
   getMailBody,
   toggleRead,
-  toggleStarred,
+  // toggleStarred,
+  toggleStatus,
   sendMail,
   setFilter,
   setDraft,
@@ -217,26 +218,38 @@ function toggleRead(mailId, isRead) {
   _saveMailsToStorage(gMails);
 }
 
-function toggleStarred(mailId) {
-  const mail = getMailById(mailId).then((mal) => {
-    mail.isStarred = !mail.isStarred;
-  });
+// function toggleStarred(mailId) {
+//   console.log('mailId in toggle star service', mailId);
+//   const mail = getMailById(mailId).then((mal) => {
+//     mail.isStarred = !mail.isStarred;
+//   });
+//   console.log('is star in service', mailId.isStarred);
+//   _saveMailsToStorage(gMails);
+//   console.log('gmails in service post start', gMails);
+//   return Promise.resolve();
+// }
+
+function toggleStatus(mailId, field) {
+  const mail = gMails.find((mail) => mail.id === mailId);
+  const value = mail[field] === true ? false : true;
+  mail[field] = value;
   _saveMailsToStorage(gMails);
-  return Promise.resolve();
+  return Promise.resolve(mail);
 }
 
 function sendMail(mail) {
   const from = loggedinUser.email;
   const newMail = _createMail(
-    subject,
-    text,
-    from,
-    to,
-    true,
-    false,
-    true,
-    false
+    mail.subject,
+    mail.to,
+    mail.text
+    // to,
+    // true,
+    // false,
+    // true,
+    // false
   );
+  newMail.isSent = true;
   gMails.unshift(newMail);
   _saveMailsToStorage(gMails);
   return Promise.resolve();
