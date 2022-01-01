@@ -6,32 +6,7 @@ export class InitialPreview extends React.Component {
   state = {
     isHover: false,
     isExpand: false,
-    // txtLength: 40,
   };
-
-  // componentDidMount() {
-  //   window.addEventListener('resize', this.getTextLength);
-  //   this.getTextLength();
-  // }
-
-  // getTextLength = () => {
-  //   let length = this.getWindowSize();
-  //   this.setState({ txtLength: length });
-  // };
-
-  // getWindowSize = () => {
-  //   const windowSize = window.innerWidth;
-  //   if (windowSize > 1600) return 70;
-  //   if (windowSize > 1400) return 50;
-  //   if (windowSize > 1200) return 40;
-  //   if (windowSize > 1000) return 30;
-  //   if (windowSize > 900) return 20;
-  //   if (windowSize > 800) return 10;
-  //   if (windowSize > 620) return 70;
-  //   if (windowSize > 520) return 50;
-  //   if (windowSize > 420) return 30;
-  //   return 15;
-  // };
 
   render() {
     const { isHover, txtLength, isExpand } = this.state;
@@ -47,41 +22,35 @@ export class InitialPreview extends React.Component {
 
     return (
       <section
-        className={`mail-init-preview ${mail.isRead ? 'read' : ''}`}
+        className={`mail-init-preview ${!mail.isRead ? 'read' : ''}`}
         onClick={(ev) => {
-          // toggleMailPreview();
           toggleRead(ev, mail, true);
         }}
         onMouseEnter={() => this.setState({ isHover: true })}
         onMouseLeave={() => this.setState({ isHover: false })}>
-        {/* <button
-          className={`star ${!mail.isStarred ? 'fas' : 'far'}fa-star`}
-          onClick={(ev) => {
-            console.log('mail.isStarred', mail.isStarred);
-            starredMail(ev, mail);
-          }}></button> */}
+        <div className='mail-preview-left'>
+          <button
+            onClick={() => toggleStarred(mail.id, 'isStarred')}
+            className='star-btn'>
+            <i
+              className={`star ${!mail.isStarred ? ' far ' : ' fas '
+                } fa-star`}></i>
+          </button>
 
-        <button
-          onClick={() => toggleStarred(mail.id, 'isStarred')}
-          className='star-btn'>
-          <i
-            className={`star ${!mail.isStarred ? ' far ' : ' fas '
-              } fa-star`}></i>
-        </button>
+          <p className='from'>{mail.from}</p>
 
-        <p className='from'>{mail.from}</p>
-
-        <div className='mail-info'>
-          <p>{mail.subject}</p>
-          <p>
-            <LongTxt txt={mail.text} txtLength={txtLength} />
-          </p>
+          <div className='mail-info'>
+            <p>{mail.subject}</p>
+            <p>
+              <LongTxt txt={mail.text} txtLength={txtLength} />
+            </p>
+          </div>
         </div>
-
         <div className='mail-preview-right'>
           {!isHover && (
             <h1 className='date-in-preview'>
-              {mailService.getDate(1640869935914)}
+              {/* {mailService.getDate(1641077634125)} */}
+              31 Dec
             </h1>
           )}
           {isHover && (
@@ -89,7 +58,9 @@ export class InitialPreview extends React.Component {
               <button
                 className='read-btn'
                 onClick={(ev) => toggleRead(ev, mail, !mail.isRead)}>
-                <i className='far fa-envelope'></i>
+                <i
+                  className={`far fa-envelope ${mail.isRead ? '-open' : ''
+                    }`}></i>
               </button>
               <button
                 className='delete-btn'
@@ -99,7 +70,6 @@ export class InitialPreview extends React.Component {
               <button
                 onClick={() => {
                   this.setState({ isExpand: !this.state.isExpand });
-                  // expandMail(mail.id);
                 }}>
                 <i className='fas fa-expand-alt'></i>
               </button>
@@ -115,43 +85,9 @@ export class InitialPreview extends React.Component {
             </div>
           )}
         </div>
+
         {isExpand && <MailDetails mailId={mail.id} />}
       </section>
-      // <section
-      //   className='mail-init-preview'
-      //   onClick={(ev) => {
-      //     toggleMailPreview();
-      //   }}
-      //   onMouseEnter={() => this.setState({ isHover: true })}
-      //   onMouseLeave={() => this.steState({ isHover: false })}
-      // >
-      //   <h4 className='mail-from'>From: {mail.from}</h4>
-      //   <div className='mail-info'>
-      //     <h4>Subject: {mail.subject} </h4>
-      //     <p>
-      //       <LongTxt txt={mail.text} txtLength={txtLength} />
-      //     </p>
-      //   </div>
-      //   {isHover && (
-      //     <div className='buttons'>
-      //       <button className='read-btn'>read</button>
-      //       <button className='delete-btn' onClick={() => deleteMail(mail.id)}>
-      //         delete
-      //       </button>
-      //     </div>
-      //   )}
-      //   {
-      //     <div className='buttons'>
-      //       <button className='read-btn'>read</button>
-      //       <button
-      //         className='delete-btn'
-      //         onClick={() => mailService.deleteMail(mail.id)}>
-      //         delete
-      //       </button>
-      //     </div>
-      //   }
-      //   {!isHover && <h3 Name='mail-date'>date</h3>}
-      // </section>
     );
   }
 }
