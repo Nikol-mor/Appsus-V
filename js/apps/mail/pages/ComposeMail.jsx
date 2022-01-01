@@ -6,20 +6,17 @@ export class ComposeMail extends React.Component {
     mail: {
       subject: '',
       to: '',
-      cc: '',
       text: '',
     },
   };
 
-  // timeOutId;
   // draftInterval;
 
-  componentDidMount() {
-    console.log('params', this.props);
-    // this.timeOutId = setTimeout(() => this.setState({ isOpen: true }), 0);
-    // this.setInput();
-    // this.draftInterval = setInterval(this.saveDraft(), 5000);
-  }
+  // componentDidMount() {
+  //   // console.log('params', this.props);
+  //   // this.setInput();
+  //   this.draftInterval = setInterval(this.saveDraft(), 5000);
+  // }
 
   // setInput = () => {
   //   const { emailId, action } = this.props.params;
@@ -54,7 +51,7 @@ export class ComposeMail extends React.Component {
   // };
 
   // componentWillUnmount() {
-  //   clearTimeout(this.timeOutId);
+  //   // clearTimeout(this.timeOutId);
   //   clearInterval(tihs.draftInterval);
   // }
 
@@ -62,7 +59,11 @@ export class ComposeMail extends React.Component {
     ev.preventDefault();
     mailService.sendMail(this.state.mail).then(() => {
       this.setState({ mail: { subject: '', to: '', cc: '', text: '' } });
+      this.props.onToggleComposeModal();
     });
+    // mailService.query().then((data) => {
+    //   console.log('new array post sending', data);
+    // });
   };
 
   handleChange = ({ target }) => {
@@ -88,46 +89,63 @@ export class ComposeMail extends React.Component {
     console.log('render in compose mail');
     return (
       <section className='compose-mail'>
-        <MailNav />
         <div
           className={`composing ${this.state.isOpen ? 'open' : ''}`}
           onClick={this.onBack}></div>
         <section className='compose-container'>
-          <div className='compose-header'>New:</div>
+          {/* <div className='compose-header'>
+            New:
+            <button onClick={this.onBack} className='back-mail-btn'>
+              Back
+            </button>
+          </div> */}
           <form onSubmit={this.sendMail}>
-            <label htmlFor='by-subject'>Subject:</label>
+            <div className='compose-header'>
+              New:
+              <button onClick={this.onBack} className='back-mail-btn'>
+                <i class='fas fa-times'></i>
+              </button>
+            </div>
+            <label htmlFor='by-subject' className='label-subject'></label>
             <input
               type='text'
               placeholder='subject'
               name='subject'
               id='by-subject'
               onChange={this.handleChange}
+              placeholder='Subject'
             />
-            <label htmlFor='by-to'>To:</label>
+            <label htmlFor='by-to' className='label-to'></label>
             <input
               type='text'
               id='by-to'
               name='to'
               onChange={this.handleChange}
+              placeholder='To'
             />
-            <label htmlFor='by-cc'>cc:</label>
+            {/* <label htmlFor='by-cc'>cc:</label>
             <input
               type='text'
               id='by-cc'
               name='cc'
               onChange={this.handleChange}
-            />
+            /> */}
+            <label htmlFor='by-text' className='labelbody'></label>
             <textarea
-              name='txt'
+              name='text'
               id='by-txt'
               cols='30'
               rows='10'
               value={text}
-              onChange={this.handleChange}></textarea>
-            <button>Send mail</button>
+              onChange={this.handleChange}
+              placeholder='Body'
+            />
+
+            <button className='send-mail-btn'>
+              <i class='fas fa-paper-plane'></i>
+            </button>
           </form>
         </section>
-        <button onClick={this.onBack}>Back</button>
       </section>
     );
   }

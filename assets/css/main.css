@@ -1,9 +1,18 @@
+/*BASIC*/
 @import './cmps/app-header.css';
 @import './basics/base.css';
+@import './basics/helpers.css';
+@import './basics/app.css';
+
+/*MAIL*/
 @import './apps/mail/mail.css';
 @import './pages/home.css';
+
+/*ABOUT*/
 @import './pages/about.css';
-@import './basics/app.css';
-@import './basics/helpers.css';
+
+/*BOOK*/
 @import './apps/book/main.css';
+
+/*KEEP*/
 @import './apps/keep/main.css';

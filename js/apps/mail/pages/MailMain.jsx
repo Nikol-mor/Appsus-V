@@ -4,6 +4,7 @@ import { MailList } from '../cmps/MailList.jsx';
 import { MailNav } from '../cmps/MailNav.jsx';
 import { ComposeMail } from './ComposeMail.jsx';
 import { MailFilter } from '../cmps/MailFilter.jsx';
+import { MailDetails } from './MailDetails.jsx';
 // mail details
 
 export class MailMain extends React.Component {
@@ -16,16 +17,37 @@ export class MailMain extends React.Component {
     this.setState({ isComposeModalShown: !this.state.isComposeModalShown });
   };
 
+  expandMail = (mailId) => {
+    this.props.history.push(this.props.location.pathname + '/' + mailId);
+  };
+
+  replyMail = (mailId) => {
+    this.expandMail(mailId);
+    this.setState({ isComposeModalShown: true });
+  };
+
   render() {
+    const { mailId } = this.props.match.params;
+
     return (
       <section className='mail-main'>
         <MailFilter />
         <MailNav onToggleComposeModal={this.onToggleComposeModal} />
         {/* <Route component={MailDetails} path='/mail/:mailId' /> */}
         {/* <Route component={MailList} path='/mail' /> */}
-        <MailList />
-        {this.state.isComposeModalShown && <ComposeMail />}
-        {/* <ComposeMail /> */}
+        {this.state.isComposeModalShown && (
+          <ComposeMail onToggleComposeModal={this.onToggleComposeModal} />
+        )}
+
+        {!mailId ? (
+          <MailList
+            onToggleComposeModal={this.onToggleComposeModal}
+            expandMail={this.expandMail}
+            replyMail={this.replyMail}
+          />
+        ) : (
+          <MailDetails mailId={mailId} />
+        )}
       </section>
     );
   }

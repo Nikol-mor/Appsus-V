@@ -36,9 +36,16 @@ export class MailList extends React.Component {
     });
   };
 
-  starredMail = (ev, mail) => {
-    ev.stopPropagation();
-    mailService.toggleStarred(mail.id).then(() => this.loadMails());
+  // toggleStatus = (mail,field) => {
+  //   // ev.stopPropagation();
+  //   mailService.toggleStarred(mail.id).then(() => this.loadMails());
+  // };
+  toggleStatus = (mailId, field) => {
+    // ev.stopPropagation();
+    mailService.toggleStatus(mailId, field).then((mail) => {
+      console.log(mail);
+      this.loadMails();
+    });
   };
 
   toggleRead = (ev, mail, isRead) => {
@@ -47,10 +54,16 @@ export class MailList extends React.Component {
     this.loadMails();
   };
 
+  // replyMail=(mailId)=>{
+  //   const {onToggleComposeModal} = this.props;
+  //   this.expandMail(mailId).onToggleComposeModal.
+  // }
+
   render() {
     const { mails } = this.state;
+    const { expandMail, replyMail } = this.props;
     return (
-      <section className='mail-list flex'>
+      <section className='mail-list'>
         {!mails.length && <div>You don't have mails</div>}
         {mails.map((mail) => (
           <MailPreview
@@ -58,8 +71,10 @@ export class MailList extends React.Component {
             mail={mail}
             deleteMail={this.deleteMail}
             toggleRead={this.toggleRead}
-            toggleStarred={this.toggleStarred}
+            toggleStarred={this.toggleStatus}
             loadMails={this.loadMails}
+            expandMail={expandMail}
+            replyMail={replyMail}
           />
         ))}
       </section>
