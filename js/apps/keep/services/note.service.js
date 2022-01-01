@@ -180,6 +180,7 @@ const addNote = (noteInfo, mail) => {
     backgroundColor: noteInfo.color,
   };
   gNotes.unshift(newNote);
+  console.log(gNotes,'gNotes:');
   saveNotesToStorage();
   return Promise.resolve();
 };

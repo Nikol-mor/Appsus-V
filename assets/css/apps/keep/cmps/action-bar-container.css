@@ -22,6 +22,10 @@
   font-size: 0.9rem;
 }
 
+.action-bar-container i.pinned {
+  color: rgb(255, 0, 0);
+}
+
 .icon-button {
   border: none;
   background: none;
@@ -30,8 +34,4 @@
 .icon-button:hover {
   border-radius: 100%;
   background-color: rgba(43, 42, 42, 0.5);
-}
-
-.action-bar-container i.pinned {
-  color: rgb(255, 0, 0);
 }

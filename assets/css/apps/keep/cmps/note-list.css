@@ -1,5 +1,6 @@
 .note-app {
   background-color: rgb(231, 231, 224);
+  margin: auto;
 }
 
 .other-notes,
@@ -8,6 +9,7 @@
   margin-left: 15px;
   justify-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .pinned-notes {

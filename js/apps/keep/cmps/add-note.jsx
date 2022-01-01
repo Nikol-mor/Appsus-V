@@ -13,6 +13,10 @@ export class AddNote extends React.Component {
         }
     };
 
+    // handleChange = ({ target: { name, value } }) => {
+    //     this.setState({ [name]: value })
+    // }
+
     handleColorChange = (color) => {
         this.setState({ color });
     };

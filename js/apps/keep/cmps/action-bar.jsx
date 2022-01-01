@@ -9,6 +9,7 @@ export const ActionBar = ({
     onDuplicateNote,
     onPinUnpinNote,
     handleEdit,
+    sendNoteAsEmail,
 }) => {
     const modalRef = React.createRef();
 
@@ -35,7 +36,7 @@ export const ActionBar = ({
                     className="icon-button"
                     onClick={() => onDuplicateNote(note.id)}
                 >
-                    <i title="duplicate" className="far fa-copy"></i>
+                    <i title="Duplicate" class="far fa-copy"></i>
                 </button>
                 <button className="icon-button" onClick={() => onRemoveNote(note.id)}>
                     <i title="delete" className="far fa-trash-alt"></i>
@@ -46,9 +47,9 @@ export const ActionBar = ({
                 >
                     <i title="edit" className="fas fa-pencil-alt"></i>
                 </button>
-                {/* <button className="icon-button" onClick={() => sendNoteAsEmail(note)}>
+                <button className="icon-button" onClick={() => sendNoteAsEmail(note)}>
                     <i title="send as email" className="fas fa-paper-plane"></i>
-                </button> */}
+                </button>
                 <button className="icon-button" onClick={() => onPinUnpinNote(note)}>
                     <i
                         title={note.isPinned ? "unpin" : "pin"}

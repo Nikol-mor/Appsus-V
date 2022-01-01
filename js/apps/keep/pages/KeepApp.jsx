@@ -2,6 +2,7 @@ import { NoteService } from "../services/note.service.js";
 import { NoteFilter } from "../cmps/note-filter.jsx";
 import { AddNote } from "../cmps/add-note.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
+import { AppHeader } from '../../cmps/AppHeader.jsx';
 
 export class KeepApp extends React.Component {
   state = {
@@ -46,17 +47,21 @@ export class KeepApp extends React.Component {
     const { notes, pinnedNotes } = this.state;
     if (!notes) return <div>Loading...</div>;
     return (
-      <section className="note-app main-layout">
-        <NoteFilter loadNotes={this.loadNotes} />
-        <AddNote onAddNote={this.onAddNote} />
-        <NoteList
-          notes={notes}
-          pinnedNotes={pinnedNotes}
-          onRemoveNote={this.onRemoveNote}
-          onDuplicateNote={this.onDuplicateNote}
-          onPinUnpinNote={this.onPinUnpinNote}
-        />
-      </section>
+      <div>
+        <AppHeader />
+
+        <section className="note-app main-layout">
+          <NoteFilter loadNotes={this.loadNotes} />
+          <AddNote onAddNote={this.onAddNote} />
+          <NoteList
+            notes={notes}
+            pinnedNotes={pinnedNotes}
+            onRemoveNote={this.onRemoveNote}
+            onDuplicateNote={this.onDuplicateNote}
+            onPinUnpinNote={this.onPinUnpinNote}
+          />
+        </section>
+      </div>
     );
   }
 }
